@@ -26,6 +26,7 @@ export class CoursesCardListComponent implements OnInit {
 
         dialogConfig.disableClose = true;
         dialogConfig.autoFocus = true;
+        dialogConfig.width = '400px';
 
         dialogConfig.data = {
             description, longDescription, category
