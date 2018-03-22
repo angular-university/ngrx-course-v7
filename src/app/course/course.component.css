@@ -40,3 +40,7 @@
 .spinner-container mat-spinner {
     margin: 130px auto 0 auto;
 }
+
+.action-toolbar {
+    margin-top: 20px;
+}
