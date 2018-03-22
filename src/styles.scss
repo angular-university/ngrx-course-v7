@@ -41,7 +41,7 @@ $mat-custom-theme: (
 );
 
 // Define a theme.
-$primary: mat-palette($mat-custom-theme);
+$primary: mat-palette($mat-blue-grey);
 $accent:  mat-palette($mat-pink, A200, A100, A400);
 
 $theme: mat-light-theme($primary, $accent);
