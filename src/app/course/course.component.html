@@ -16,44 +16,51 @@
 
     </div>
 
-    <mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSource"
-               matSort matSortActive="seqNo" matSortDirection="asc" matSortDisableClear>
+    <div class="mat-elevation-z8">
 
-        <ng-container matColumnDef="seqNo">
+        <mat-table class="lessons-table" [dataSource]="dataSource"
+                   matSort matSortActive="seqNo" matSortDirection="asc" matSortDisableClear>
 
-            <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
+            <ng-container matColumnDef="seqNo">
 
-            <mat-cell *matCellDef="let lesson">{{lesson.seqNo}}</mat-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
 
-        </ng-container>
+                <mat-cell *matCellDef="let lesson">{{lesson.seqNo}}</mat-cell>
 
-        <ng-container matColumnDef="description">
+            </ng-container>
 
-            <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+            <ng-container matColumnDef="description">
 
-            <mat-cell class="description-cell"
-                      *matCellDef="let lesson">{{lesson.description}}</mat-cell>
+                <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
 
-        </ng-container>
+                <mat-cell class="description-cell"
+                          *matCellDef="let lesson">{{lesson.description}}
+                </mat-cell>
 
-        <ng-container matColumnDef="duration">
+            </ng-container>
 
-            <mat-header-cell *matHeaderCellDef>Duration</mat-header-cell>
+            <ng-container matColumnDef="duration">
 
-            <mat-cell class="duration-cell"
-                      *matCellDef="let lesson">{{lesson.duration}}</mat-cell>
+                <mat-header-cell *matHeaderCellDef>Duration</mat-header-cell>
 
-        </ng-container>
+                <mat-cell class="duration-cell"
+                          *matCellDef="let lesson">{{lesson.duration}}
+                </mat-cell>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            </ng-container>
 
-        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
-    </mat-table>
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+        </mat-table>
 
 
-    <mat-paginator [length]="course?.lessonsCount" [pageSize]="3"
-                   [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
+        <mat-paginator [length]="course?.lessonsCount" [pageSize]="3"
+                       [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
+
+    </div>
+
 
     <div class="action-toolbar">
         <span>Add To Cart:</span>
