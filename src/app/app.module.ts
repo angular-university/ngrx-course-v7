@@ -15,6 +15,12 @@ import {HttpClientModule} from "@angular/common/http";
 import {CoursesModule} from "./courses/courses.module";
 import {RouterModule, Routes} from "@angular/router";
 import {AuthModule} from "./auth/auth.module";
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import {RouterStateSerializer, StoreRouterConnectingModule} from "@ngrx/router-store";
+import {CustomRouterStateSerializer} from "./shared/utils";
 
 
 const routes: Routes = [
@@ -40,7 +46,15 @@ const routes: Routes = [
         MatListModule,
         MatToolbarModule,
         CoursesModule.forRoot(),
-        AuthModule.forRoot()
+        AuthModule.forRoot(),
+        StoreModule.forRoot(reducers, { metaReducers }),
+        !environment.production ? StoreDevtoolsModule.instrument() : [],
+        StoreRouterConnectingModule.forRoot({
+            stateKey: 'router'
+        })
+    ],
+    providers: [
+        { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer },
     ],
     bootstrap: [AppComponent]
 })
