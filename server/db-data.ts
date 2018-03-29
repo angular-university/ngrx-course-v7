@@ -2,6 +2,16 @@
 
 export const COURSES: any = {
 
+
+    0: {
+        id: 0,
+        description: "Angular Ngrx Course",
+        iconUrl: 'https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-ngrx-course.png',
+        courseListIcon: 'https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png',
+        longDescription: "Learn the modern Ngrx Ecosystem, including Store, Effects, Router Store, Ngrx Entity, Dev Tools and Schematics.",
+        category: 'BEGINNER',
+        lessonsCount: 10
+    },
     1: {
         id: 1,
         description: "Angular for Beginners",
@@ -287,6 +297,49 @@ export const LESSONS = {
         "duration": "5:38",
         "seqNo": 8,
         courseId: 3
+    },
+    30: {
+        id: 30,
+        "description": "Welcome to the Angular Ngrx Course",
+        "duration": "6:53",
+        "seqNo": 1,
+        courseId: 0
+
+    },
+    31: {
+        id: 31,
+        "description": "The Angular Ngrx Architecture Course - Helicopter View",
+        "duration": "5:52",
+        "seqNo": 2,
+        courseId: 0
+    },
+    32: {
+        id: 32,
+        "description": "The Origins of Flux - Understanding the Famous Facebook Bug Problem",
+        "duration": "8:17",
+        "seqNo": 3,
+        courseId: 0
+    },
+    33: {
+        id: 33,
+        "description": "Custom Global Events - Why Don't They Scale In Complexity?",
+        "duration": "7:47",
+        "seqNo": 4,
+        courseId: 0
+    },
+    34: {
+        id: 34,
+        "description": "The Flux Architecture - How Does it Solve Facebook Counter Problem?",
+        "duration": "9:22",
+        "seqNo": 5,
+        courseId: 0
+    },
+    35: {
+        id: 35,
+        "description": "Unidirectional Data Flow And The Angular Development Mode",
+        "duration": "7:07",
+        "seqNo": 6,
+        courseId: 0
     }
 
 };
