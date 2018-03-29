@@ -8,6 +8,7 @@ import {CourseResolver} from "../courses/services/course.resolver";
 import {CoursesModule} from "../courses/courses.module";
 import {CoursesService} from "../courses/services/courses.service";
 import {ReactiveFormsModule} from "@angular/forms";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
     imports: [
@@ -15,6 +16,7 @@ import {ReactiveFormsModule} from "@angular/forms";
         ReactiveFormsModule,
         MatCardModule,
         MatInputModule,
+        MatButtonModule,
         RouterModule.forChild([{path: '', component: LoginComponent}])
     ],
     declarations: [LoginComponent],
