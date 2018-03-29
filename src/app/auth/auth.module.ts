@@ -9,6 +9,8 @@ import {CoursesModule} from "../courses/courses.module";
 import {CoursesService} from "../courses/services/courses.service";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
+import { StoreModule } from '@ngrx/store';
+import * as fromAuth from './auth.reducer';
 
 @NgModule({
     imports: [
@@ -17,7 +19,8 @@ import {MatButtonModule} from "@angular/material/button";
         MatCardModule,
         MatInputModule,
         MatButtonModule,
-        RouterModule.forChild([{path: '', component: LoginComponent}])
+        RouterModule.forChild([{path: '', component: LoginComponent}]),
+        StoreModule.forFeature('auth', fromAuth.reducer)
     ],
     declarations: [LoginComponent],
     exports: [LoginComponent]
