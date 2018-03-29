@@ -14,6 +14,7 @@ import {HttpClientModule} from "@angular/common/http";
 
 import {CoursesModule} from "./courses/courses.module";
 import {RouterModule, Routes} from "@angular/router";
+import {AuthModule} from "./auth/auth.module";
 
 
 const routes: Routes = [
@@ -38,7 +39,8 @@ const routes: Routes = [
         MatSidenavModule,
         MatListModule,
         MatToolbarModule,
-        CoursesModule.forRoot()
+        CoursesModule.forRoot(),
+        AuthModule.forRoot()
     ],
     bootstrap: [AppComponent]
 })
