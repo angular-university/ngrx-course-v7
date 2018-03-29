@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import {User} from "./user.model";
+import {User} from "../model/user.model";
 
 
 export interface State {

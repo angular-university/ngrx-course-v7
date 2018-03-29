@@ -19,7 +19,7 @@
 
             </mat-form-field>
 
-            <button mat-raised-button color="primary">Login</button>
+            <button mat-raised-button color="primary" (click)="login()" [disabled]="!form.valid">Login</button>
 
         </form>
     </mat-card-content>
