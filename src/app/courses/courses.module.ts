@@ -24,12 +24,12 @@ import {RouterModule, Routes} from "@angular/router";
 
 export const coursesRoutes: Routes = [
     {
-        path: "courses",
+        path: "",
         component: HomeComponent
 
     },
     {
-        path: 'courses/:id',
+        path: ':id',
         component: CourseComponent,
         resolve: {
             course: CourseResolver
@@ -60,18 +60,13 @@ export const coursesRoutes: Routes = [
     ],
     declarations: [HomeComponent, CoursesCardListComponent, CourseDialogComponent, CourseComponent],
     exports: [HomeComponent, CoursesCardListComponent, CourseDialogComponent, CourseComponent],
-    entryComponents: [CourseDialogComponent]
+    entryComponents: [CourseDialogComponent],
+    providers: [
+        CoursesService,
+        CourseResolver
+    ]
 })
 export class CoursesModule {
 
-    static forRoot(): ModuleWithProviders {
-        return {
-            ngModule: CoursesModule,
-            providers: [
-                CoursesService,
-                CourseResolver
-            ]
-        }
-    }
 
 }

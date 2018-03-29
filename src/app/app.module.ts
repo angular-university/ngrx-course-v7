@@ -12,7 +12,6 @@ import {
 } from "@angular/material";
 import {HttpClientModule} from "@angular/common/http";
 
-import {CoursesModule} from "./courses/courses.module";
 import {RouterModule, Routes} from "@angular/router";
 import {AuthModule} from "./auth/auth.module";
 import { StoreModule } from '@ngrx/store';
@@ -24,6 +23,11 @@ import {CustomRouterStateSerializer} from "./shared/utils";
 
 
 const routes: Routes = [
+    {
+        path: 'courses',
+        loadChildren: './courses/courses.module#CoursesModule',
+        canActivate: [],
+    },
     {
         path: "**",
         redirectTo: '/'
@@ -45,7 +49,6 @@ const routes: Routes = [
         MatSidenavModule,
         MatListModule,
         MatToolbarModule,
-        CoursesModule.forRoot(),
         AuthModule.forRoot(),
         StoreModule.forRoot(reducers, { metaReducers }),
         !environment.production ? StoreDevtoolsModule.instrument() : [],
