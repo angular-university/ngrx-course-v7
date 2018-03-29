@@ -1,7 +1,7 @@
 <mat-sidenav-container fullscreen>
 
     <mat-sidenav #start>
-        <mat-nav-list>
+        <mat-nav-list (click)="start.close()">
 
             <a mat-list-item routerLink="/courses">
                 <mat-icon>library_books</mat-icon>

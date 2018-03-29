@@ -3,17 +3,17 @@ import {User} from "../model/user.model";
 import {AuthActions, AuthActionTypes} from "./auth.actions";
 
 
-export interface State {
+export interface AuthState {
     loggedIn: boolean;
     user: User;
 }
 
-export const initialState: State = {
+export const initialState: AuthState = {
     loggedIn: false,
     user: undefined
 };
 
-export function reducer(state = initialState, action: AuthActions): State {
+export function reducer(state = initialState, action: AuthActions): AuthState {
     switch (action.type) {
 
         case AuthActionTypes.LoginAction:
