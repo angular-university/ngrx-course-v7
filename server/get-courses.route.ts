@@ -7,6 +7,8 @@ import {COURSES} from "./db-data";
 
 export function getAllCourses(req: Request, res: Response) {
 
+    console.log("Retrieving courses data ...");
+
     res.status(200).json({payload:Object.values(COURSES)});
 
 }

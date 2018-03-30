@@ -1,9 +1,10 @@
 import {Request, Response} from 'express';
 import {COURSES} from "./db-data";
-import {Course} from "../src/app/courses/model/course";
 
 
 export function saveCourse(req: Request, res: Response) {
+
+    console.log("Saving course ...");
 
     const id = req.params["id"],
         changes = req.body;

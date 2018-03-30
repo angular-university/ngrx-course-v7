@@ -9,6 +9,8 @@ import {setTimeout} from "timers";
 
 export function searchLessons(req: Request, res: Response) {
 
+    console.log('Searching for lessons ...');
+
     const queryParams = req.query;
 
     const courseId = queryParams.courseId,
