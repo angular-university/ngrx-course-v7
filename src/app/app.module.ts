@@ -21,6 +21,7 @@ import { environment } from '../environments/environment';
 import {RouterStateSerializer, StoreRouterConnectingModule} from "@ngrx/router-store";
 import {CustomRouterStateSerializer} from "./shared/utils";
 import {AuthGuard} from "./auth/auth.guard";
+import { EffectsModule } from '@ngrx/effects';
 
 
 const routes: Routes = [
@@ -55,7 +56,8 @@ const routes: Routes = [
         !environment.production ? StoreDevtoolsModule.instrument() : [],
         StoreRouterConnectingModule.forRoot({
             stateKey: 'router'
-        })
+        }),
+        EffectsModule.forRoot([])
     ],
     providers: [
         { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer }

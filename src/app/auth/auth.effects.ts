@@ -16,6 +16,12 @@ export class AuthEffects {
         tap(action => localStorage.setItem('user', JSON.stringify(action.user)))
     );
 
+    @Effect({dispatch:false})
+    logout$ = this.actions$.pipe(
+        ofType<Logout>(AuthActionTypes.LogoutAction),
+        tap(action => localStorage.removeItem('user'))
+    );
+
     @Effect()
     init$ = defer(() => {
 
