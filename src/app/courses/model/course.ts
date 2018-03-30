@@ -8,4 +8,5 @@ export interface Course {
     longDescription: string;
     category:string;
     lessonsCount:number;
+    promo:boolean;
 }

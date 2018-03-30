@@ -9,6 +9,7 @@ import {CourseComponent} from "./course/course.component";
 import {
     MatDatepickerModule,
     MatDialogModule, MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSelectModule,
+    MatSlideToggleModule,
     MatSortModule, MatTableModule
 } from "@angular/material";
 import {MatTabsModule} from "@angular/material/tabs";
@@ -51,6 +52,7 @@ export const coursesRoutes: Routes = [
         MatPaginatorModule,
         MatSortModule,
         MatProgressSpinnerModule,
+        MatSlideToggleModule,
         MatDialogModule,
         MatSelectModule,
         MatDatepickerModule,
