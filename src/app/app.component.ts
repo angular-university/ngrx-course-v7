@@ -4,7 +4,6 @@ import {select, Store} from "@ngrx/store";
 import {Observable} from "rxjs/Observable";
 import {isLoggedIn, isLoggedOut} from "./auth/auth.selectors";
 import {Logout} from "./auth/auth.actions";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -16,7 +15,7 @@ export class AppComponent implements OnInit {
     isLoggedIn$: Observable<boolean>;
     isLoggedOut$: Observable<boolean>;
 
-    constructor(private store: Store<AppState>, private router: Router) {
+    constructor(private store: Store<AppState>) {
 
     }
 
@@ -29,7 +28,6 @@ export class AppComponent implements OnInit {
 
     logout() {
         this.store.dispatch(new Logout());
-        this.router.navigateByUrl('/');
     }
 
 

@@ -17,7 +17,7 @@ export const COURSES = {
         courseListIcon: 'https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png',
         longDescription: "Learn the modern Ngrx Ecosystem, including Store, Effects, Router Store, Ngrx Entity, Dev Tools and Schematics.",
         category: 'BEGINNER',
-        lessonsCount: 10,
+        lessonsCount: 6,
         promo:true
     },
     1: {

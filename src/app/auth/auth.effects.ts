@@ -4,6 +4,7 @@ import {defer} from "rxjs/observable/defer";
 import {of} from "rxjs/observable/of";
 import {AuthActionTypes, Logout, Login} from "./auth.actions";
 import {tap} from "rxjs/operators";
+import {Router} from "@angular/router";
 
 
 
@@ -19,7 +20,10 @@ export class AuthEffects {
     @Effect({dispatch:false})
     logout$ = this.actions$.pipe(
         ofType<Logout>(AuthActionTypes.LogoutAction),
-        tap(action => localStorage.removeItem('user'))
+        tap(() => {
+            localStorage.removeItem('user');
+            this.router.navigateByUrl('/');
+        })
     );
 
     @Effect()
@@ -35,7 +39,7 @@ export class AuthEffects {
         }
     });
 
-    constructor(private actions$: Actions) {
+    constructor(private actions$: Actions, private router: Router) {
 
     }
 
