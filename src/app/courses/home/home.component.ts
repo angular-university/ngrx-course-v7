@@ -11,6 +11,8 @@ import {CoursesService} from "../services/courses.service";
 })
 export class HomeComponent implements OnInit {
 
+    promoTotal$: Observable<number>;
+
     beginnerCourses$: Observable<Course[]>;
 
     advancedCourses$: Observable<Course[]>;
@@ -29,6 +31,10 @@ export class HomeComponent implements OnInit {
 
         this.advancedCourses$ = courses$.pipe(
             map(courses => courses.filter(course => course.category === 'ADVANCED') )
+        );
+
+        this.promoTotal$ = courses$.pipe(
+            map(courses => courses.filter(course => course.promo).length)
         );
 
     }
