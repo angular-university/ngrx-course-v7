@@ -10,8 +10,6 @@ export const USERS = {
 
 
 export const COURSES = {
-
-
     0: {
         id: 0,
         description: "Angular Ngrx Course",
