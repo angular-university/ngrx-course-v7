@@ -34,10 +34,6 @@ export class CoursesCardListComponent implements OnInit {
             dialogConfig);
 
 
-        dialogRef.afterClosed().subscribe(
-            val => console.log("Dialog output:", val)
-        );
-
     }
 
 }
