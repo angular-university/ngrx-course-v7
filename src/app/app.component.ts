@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from "@ngrx/store";
 import {Observable} from "rxjs/Observable";
+import {AppState} from './reducers';
+import {Logout} from './auth/auth.actions';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +13,7 @@ export class AppComponent implements OnInit {
 
 
 
-    constructor() {
+    constructor(private store: Store<AppState>) {
 
     }
 
@@ -21,6 +23,9 @@ export class AppComponent implements OnInit {
     }
 
     logout() {
+
+      this.store.dispatch(new Logout());
+
     }
 
 
