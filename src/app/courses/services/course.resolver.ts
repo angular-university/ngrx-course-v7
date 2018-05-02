@@ -8,9 +8,7 @@ import {Observable} from "rxjs/Observable";
 import {CoursesService} from "./courses.service";
 import {AppState} from "../../reducers";
 import {select, Store} from "@ngrx/store";
-import {selectCourseById} from "../course.selectors";
 import {filter, first, tap} from "rxjs/operators";
-import {CourseRequested} from "../course.actions";
 
 
 
@@ -27,17 +25,7 @@ export class CourseResolver implements Resolve<Course> {
 
         const courseId = route.params['id'];
 
-        return this.store
-            .pipe(
-                select(selectCourseById(courseId)),
-                tap(course => {
-                    if (!course) {
-                        this.store.dispatch(new CourseRequested({courseId}));
-                    }
-                }),
-                filter(course => !!course),
-                first()
-            );
+        return this.coursesService.findCourseById(courseId);
     }
 
 }
