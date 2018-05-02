@@ -33,7 +33,7 @@ export class AuthEffects {
     const userData = localStorage.getItem("user");
 
     if (userData) {
-       return of(new Login(JSON.parse(userData)));
+       return of(new Login({user:JSON.parse(userData)}));
     }
     else {
       return of(new Logout());
