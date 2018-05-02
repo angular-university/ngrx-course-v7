@@ -1,10 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {Course} from "../model/course";
 import {Observable} from "rxjs/Observable";
-import {map} from "rxjs/operators";
+import {filter, map, tap, withLatestFrom} from "rxjs/operators";
 import {CoursesService} from "../services/courses.service";
 import {AppState} from '../../reducers';
-import {Store} from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
+import {allCoursesLoaded, selectAllCourses} from "../course.selectors";
+import {AllCoursesRequested} from "../course.actions";
 
 @Component({
     selector: 'home',
@@ -25,7 +27,12 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
 
-        const courses$ = this.coursesService.findAllCourses();
+        this.store.dispatch(new AllCoursesRequested());
+
+        const courses$ = this.store
+            .pipe(
+                select(selectAllCourses)
+            );
 
         this.beginnerCourses$ = courses$.pipe(
           map(courses => courses.filter(course => course.category === 'BEGINNER') )
