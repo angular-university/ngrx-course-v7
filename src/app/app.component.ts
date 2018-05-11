@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from "@ngrx/store";
-import {Observable} from "rxjs/Observable";
+import {Observable} from "rxjs";
 import {AppState} from './reducers';
 import {Logout} from './auth/auth.actions';
 import {map} from 'rxjs/operators';
