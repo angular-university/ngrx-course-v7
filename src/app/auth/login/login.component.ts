@@ -5,7 +5,7 @@ import {Store} from "@ngrx/store";
 
 import {AuthService} from "../auth.service";
 import {tap} from "rxjs/operators";
-import {noop} from "rxjs/util/noop";
+import {noop} from "rxjs";
 import {Router} from "@angular/router";
 
 @Component({
