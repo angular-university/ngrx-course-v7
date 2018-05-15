@@ -19,3 +19,9 @@ export const selectAllCourses = createSelector(
   fromCourse.selectAll
 
 );
+
+
+export const allCoursesLoaded = createSelector(
+  selectCoursesState,
+  coursesState => coursesState.allCoursesLoaded
+);
