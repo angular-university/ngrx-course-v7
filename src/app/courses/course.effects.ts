@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
-import {CourseActionTypes, CourseLoaded, CourseRequested} from './course.actions';
+import {AllCoursesLoaded, AllCoursesRequested, CourseActionTypes, CourseLoaded, CourseRequested} from './course.actions';
 import {throwError} from 'rxjs';
 import {catchError, concatMap, exhaustMap, filter, map, mergeMap, withLatestFrom} from "rxjs/operators";
 import {CoursesService} from './services/courses.service';
@@ -20,6 +20,18 @@ export class CourseEffects {
       })
 
   );
+
+  @Effect()
+  loadAllCourses$ = this.actions$
+    .pipe(
+      ofType<AllCoursesRequested>(CourseActionTypes.AllCoursesRequested),
+      mergeMap(() => this.coursesService.findAllCourses()),
+      map(courses => new AllCoursesLoaded({courses})),
+      catchError(err => {
+        console.log('error loading all courses ', err);
+        return throwError(err);
+      })
+    );
 
 
   constructor(private actions$ :Actions, private coursesService: CoursesService) {
