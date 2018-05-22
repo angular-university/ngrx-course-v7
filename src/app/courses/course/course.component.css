@@ -27,9 +27,12 @@
 }
 
 .spinner-container {
-    height: 360px;
+    height: 340px;
     width: 390px;
     position: fixed;
+    background: white;
+    margin-top: 70px;
+    z-index: 1;
 }
 
 .lessons-table {
@@ -38,7 +41,7 @@
 }
 
 .spinner-container mat-spinner {
-    margin: 130px auto 0 auto;
+    margin: 95px auto 0 auto;
 }
 
 .action-toolbar {
