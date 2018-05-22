@@ -128,5 +128,8 @@
     "@ngrx/schematics:directive": {
       "prefix": ""
     }
+  },
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
   }
 }
