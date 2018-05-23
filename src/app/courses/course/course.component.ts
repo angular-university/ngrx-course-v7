@@ -8,8 +8,10 @@ import {debounceTime, distinctUntilChanged, startWith, tap, delay} from 'rxjs/op
 import {merge, fromEvent} from "rxjs";
 import {LessonsDataSource} from "../services/lessons.datasource";
 import {AppState} from '../../reducers';
-import {Store} from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 import {PageQuery} from '../course.actions';
+import {Observable} from 'rxjs/Observable';
+import {selectLessonsLoading} from '../course.selectors';
 
 
 @Component({
@@ -27,6 +29,8 @@ export class CourseComponent implements OnInit, AfterViewInit {
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
+    loading$ : Observable<boolean>;
+
 
     constructor(private route: ActivatedRoute, private store: Store<AppState>) {
 
@@ -35,6 +39,8 @@ export class CourseComponent implements OnInit, AfterViewInit {
     ngOnInit() {
 
         this.course = this.route.snapshot.data["course"];
+
+        this.loading$ = this.store.pipe(select(selectLessonsLoading));
 
         this.dataSource = new LessonsDataSource(this.store);
 
