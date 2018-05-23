@@ -36,6 +36,13 @@ export function lessonsReducer(state = initialLessonsState,
 
   switch(action.type) {
 
+    case CourseActionTypes.LessonsPageCancelled:
+
+      return {
+        ...state,
+        loading:false
+      };
+
     case CourseActionTypes.LessonsPageRequested:
       return {
         ...state,
