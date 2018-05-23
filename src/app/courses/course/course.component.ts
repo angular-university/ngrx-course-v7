@@ -1,4 +1,4 @@
-///<reference path="../services/lessons.datasource.ts"/>
+
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
