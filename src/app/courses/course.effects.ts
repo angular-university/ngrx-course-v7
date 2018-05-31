@@ -23,11 +23,7 @@ export class CourseEffects {
     .pipe(
       ofType<CourseRequested>(CourseActionTypes.CourseRequested),
       mergeMap(action => this.coursesService.findCourseById(action.payload.courseId)),
-      map(course => new CourseLoaded({course})),
-      catchError(err => {
-        console.log('error loading course ', err);
-        return throwError(err);
-      })
+      map(course => new CourseLoaded({course}))
 
   );
 
@@ -38,11 +34,7 @@ export class CourseEffects {
       withLatestFrom(this.store.pipe(select(allCoursesLoaded))),
       filter(([action, allCoursesLoaded]) => !allCoursesLoaded),
       mergeMap(() => this.coursesService.findAllCourses()),
-      map(courses => new AllCoursesLoaded({courses})),
-      catchError(err => {
-        console.log('error loading all courses ', err);
-        return throwError(err);
-      })
+      map(courses => new AllCoursesLoaded({courses}))
     );
 
 
