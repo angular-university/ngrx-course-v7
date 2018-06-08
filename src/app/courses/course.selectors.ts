@@ -44,29 +44,6 @@ export const selectPromoTotal = createSelector(
 );
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export const allCoursesLoaded = createSelector(
   selectCoursesState,
   coursesState => coursesState.allCoursesLoaded
