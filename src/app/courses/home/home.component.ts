@@ -10,8 +10,7 @@ import {AllCoursesRequested} from '../course.actions';
 @Component({
     selector: 'home',
     templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
 
@@ -27,14 +26,13 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
 
-        this.store.dispatch(new AllCoursesRequested());
+      this.store.dispatch(new AllCoursesRequested());
 
-        this.beginnerCourses$ = this.store.pipe(select(selectBeginnerCourses));
+      this.beginnerCourses$ = this.store.pipe(select(selectBeginnerCourses));
 
-        this.advancedCourses$ = this.store.pipe(select(selectAdvancedCourses));
+      this.advancedCourses$ = this.store.pipe(select(selectAdvancedCourses));
 
-        this.promoTotal$ = this.store.pipe(select(selectPromoTotal));
-
+      this.promoTotal$ = this.store.pipe(select(selectPromoTotal));
     }
 
 }
