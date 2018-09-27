@@ -21,7 +21,7 @@ import {RouterStateSerializer, StoreRouterConnectingModule} from '@ngrx/router-s
 
 import { EffectsModule } from '@ngrx/effects';
 import { reducers, metaReducers } from './reducers';
-import { environment } from '../../environments/environment';
+// import { environment } from '../../environments/environment';
 
 
 const routes: Routes = [
