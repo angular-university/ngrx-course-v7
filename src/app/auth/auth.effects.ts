@@ -35,7 +35,7 @@ export class AuthEffects {
        return of(new Login({user:JSON.parse(userData)}));
     }
     else {
-      return of(new Logout());
+      return <any>of(new Logout());
     }
 
   });
