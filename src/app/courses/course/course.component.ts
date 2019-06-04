@@ -1,16 +1,17 @@
 
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
+import { MatTableDataSource } from "@angular/material/table";
 import {Course} from "../model/course";
 import {CoursesService} from "../services/courses.service";
 import {debounceTime, distinctUntilChanged, startWith, tap, delay} from 'rxjs/operators';
-import {merge, fromEvent} from "rxjs";
+import {merge, fromEvent, Observable} from "rxjs";
 import {LessonsDataSource} from "../services/lessons.datasource";
 import {AppState} from '../../reducers';
 import {select, Store} from '@ngrx/store';
 import {PageQuery} from '../course.actions';
-import {Observable} from 'rxjs/Observable';
 import {selectLessonsLoading} from '../course.selectors';
 
 
@@ -27,7 +28,7 @@ export class CourseComponent implements OnInit, AfterViewInit {
 
     displayedColumns = ["seqNo", "description", "duration"];
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
     loading$ : Observable<boolean>;
 
