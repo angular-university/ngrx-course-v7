@@ -3,7 +3,7 @@
 
 This repository contains the code of the [Angular Ngrx Course](https://angular-university.io/course/angular-ngrx-course).
 
-This course repository is updated to Angular v5, and there is a  package-lock.json file available, for avoiding semantic versioning installation issues.
+This course repository is updated to Angular v8, and there is a  package-lock.json file available, for avoiding semantic versioning installation issues.
 
 ![Angular Ngrx Course](https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-ngrx-course.png)
 
@@ -77,7 +77,7 @@ At certain points along the course, you will be asked to checkout other remote b
 
 We can checkout the remote branch and start tracking it with a local branch that has the same name, by using the following command:
 
-      git checkout -b section-1 origin/1-navigation-and-containers
+      git checkout -b 1-auth origin/1-auth
 
 It's also possible to download a ZIP file for a given branch,  using the branch dropdown on this page on the top left, and then selecting the Clone or Download / Download as ZIP button.
 

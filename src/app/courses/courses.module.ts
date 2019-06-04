@@ -6,12 +6,15 @@ import {CourseDialogComponent} from "./course-dialog/course-dialog.component";
 import {CourseResolver} from "./services/course.resolver";
 import {CoursesService} from "./services/courses.service";
 import {CourseComponent} from "./course/course.component";
-import {
-    MatDatepickerModule,
-    MatDialogModule, MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSelectModule,
-    MatSlideToggleModule,
-    MatSortModule, MatTableModule
-} from "@angular/material";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatInputModule } from "@angular/material/input";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatSelectModule } from "@angular/material/select";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatSortModule } from "@angular/material/sort";
+import { MatTableModule } from "@angular/material/table";
 import {MatTabsModule} from "@angular/material/tabs";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatMenuModule} from "@angular/material/menu";

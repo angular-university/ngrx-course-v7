@@ -6,10 +6,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 
-import {
-    MatListModule,
-    MatSidenavModule, MatToolbarModule,
-} from "@angular/material";
+import { MatListModule } from "@angular/material/list";
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatToolbarModule } from "@angular/material/toolbar";
 import {HttpClientModule} from "@angular/common/http";
 
 import {RouterModule, Routes} from "@angular/router";
@@ -25,7 +24,7 @@ import { EffectsModule } from '@ngrx/effects';
 const routes: Routes = [
     {
         path: 'courses',
-        loadChildren: './courses/courses.module#CoursesModule',
+        loadChildren: () => import('./courses/courses.module').then(m => m.CoursesModule),
         canActivate: [],
     },
     {
@@ -49,7 +48,7 @@ const routes: Routes = [
         MatSidenavModule,
         MatListModule,
         MatToolbarModule,
-        AuthModule.forRoot(),
+        AuthModule.forRoot()
     ],
     providers: [],
     bootstrap: [AppComponent]
