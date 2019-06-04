@@ -21,7 +21,7 @@ export class CourseComponent implements OnInit, AfterViewInit {
 
     displayedColumns= ["seqNo", "description", "duration"];
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
 
     constructor(private route: ActivatedRoute,
