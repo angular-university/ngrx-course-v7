@@ -1,66 +1,63 @@
-import {Injectable} from '@angular/core';
-import {Actions, Effect, ofType} from '@ngrx/effects';
-import {
-  AllCoursesLoaded,
-  AllCoursesRequested,
-  CourseActionTypes,
-  CourseLoaded,
-  CourseRequested, LessonsPageCancelled, LessonsPageLoaded,
-  LessonsPageRequested
-} from './course.actions';
-import {throwError,of} from 'rxjs';
-import {catchError, concatMap, exhaustMap, filter, map, mergeMap, withLatestFrom} from "rxjs/operators";
-import {CoursesService} from './services/courses.service';
-import {AppState} from '../reducers';
-import {select, Store} from '@ngrx/store';
-import {allCoursesLoaded} from './course.selectors';
+
+import { Injectable } from '@angular/core';
+import { of, throwError } from 'rxjs';
+import { catchError, concatMap, exhaustMap, filter, map, mergeMap, withLatestFrom } from 'rxjs/operators';
+import { select, Store } from '@ngrx/store';
+import { Actions, ofType, createEffect } from '@ngrx/effects';
+
+import * as courseActions from './course.actions';
+import { CoursesService } from './services/courses.service';
+import { AppState } from '../reducers';
+import { allCoursesLoaded } from './course.selectors';
 
 @Injectable()
 export class CourseEffects {
 
-  @Effect()
-  loadCourse$ = this.actions$
-    .pipe(
-      ofType<CourseRequested>(CourseActionTypes.CourseRequested),
-      mergeMap(action => this.coursesService.findCourseById(action.payload.courseId)),
-      map(course => new CourseLoaded({course}))
+  loadCourse$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(courseActions.courseRequested),
+      mergeMap(action => this.coursesService.findCourseById(action.courseId)),
+      map(course => courseActions.courseLoaded(course)),
+      catchError(err => {
+        console.log('error loading course ', err);
+        return throwError(err);
+      })
+    )
   );
 
-  @Effect()
-  loadAllCourses$ = this.actions$
-    .pipe(
-      ofType<AllCoursesRequested>(CourseActionTypes.AllCoursesRequested),
+  loadAllCourses$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(courseActions.allCoursesRequested),
       withLatestFrom(this.store.pipe(select(allCoursesLoaded))),
-      filter(([action, allCoursesLoaded]) => !allCoursesLoaded),
+      filter(([action, coursesLoaded]) => !coursesLoaded),
       mergeMap(() => this.coursesService.findAllCourses()),
-      map(courses => new AllCoursesLoaded({courses}))
-    );
+      map(courses => courseActions.allCoursesLoaded(courses)),
+      catchError(err => {
+        console.log('error loading all courses ', err);
+        return throwError(err);
+      })
+    )
+  );
 
-
-  @Effect()
-  loadLessonsPage$ = this.actions$
-    .pipe(
-      ofType<LessonsPageRequested>(CourseActionTypes.LessonsPageRequested),
-      mergeMap(({payload}) =>
-              this.coursesService.findLessons(payload.courseId,
-                          payload.page.pageIndex, payload.page.pageSize)
-                .pipe(
-                  catchError(err => {
-                    console.log('error loading a lessons page ', err);
-                    this.store.dispatch(new LessonsPageCancelled());
-                    return of([]);
-                  })
-                )
-
+  loadLessonsPage$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(courseActions.lessonsPageRequested),
+      mergeMap(action => this.coursesService.findLessons(action.payload.courseId,
+        action.payload.page.pageIndex, action.payload.page.pageSize)
+        .pipe(
+          catchError(err => {
+            console.log('error loading a lessons page ', err);
+            this.store.dispatch(courseActions.lessonsPageCancelled());
+            return of([]);
+          })
+        )
       ),
-      map(lessons => new LessonsPageLoaded({lessons}))
-    );
+      map(lessons => courseActions.lessonsPageLoaded(lessons))
+    )
+  );
 
-
-
-  constructor(private actions$ :Actions, private coursesService: CoursesService,
+  constructor(private actions$: Actions, private coursesService: CoursesService,
               private store: Store<AppState>) {
-
   }
 
 }

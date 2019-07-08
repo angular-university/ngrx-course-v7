@@ -1,103 +1,49 @@
-import {Action} from '@ngrx/store';
-import {Course} from './model/course';
-import {Update} from '@ngrx/entity';
-import {Lesson} from './model/lesson';
 
+import { createAction } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
 
-export enum CourseActionTypes {
-  CourseRequested = '[View Course Page] Course Requested',
-  CourseLoaded = '[Courses API] Course Loaded',
-  AllCoursesRequested = '[Courses Home Page] All Courses Requested',
-  AllCoursesLoaded = '[Courses API] All Courses Loaded',
-  CourseSaved = '[Edit Course Dialog] Course Saved',
-  LessonsPageRequested = '[Course Landing Page] Lessons Page Requested',
-  LessonsPageLoaded = '[Courses API] Lessons Page Loaded',
-  LessonsPageCancelled = '[Courses API] Lessons Page Cancelled'
-}
+import { Course } from './model/course';
+import { Lesson } from './model/lesson';
 
 export interface PageQuery {
-  pageIndex: number;
-  pageSize:number;
+pageIndex: number;
+pageSize: number;
 }
 
-export class LessonsPageRequested implements Action {
+export const lessonsPageRequested = createAction(
+  '[Course Landing Page] Lessons Page Requested',
+  (payload: {courseId: number, page: PageQuery}) => ({ payload })
+);
 
-  readonly type = CourseActionTypes.LessonsPageRequested;
+export const lessonsPageLoaded = createAction(
+  '[Courses API] Lessons Page Loaded',
+  (lessons: Lesson[]) => ({ lessons })
+);
 
-  constructor(public payload: {courseId:number, page:PageQuery}) {}
+export const lessonsPageCancelled = createAction(
+  '[Courses API] Lessons Page Cancelled'
+);
 
-}
+export const courseRequested = createAction(
+  '[View Course Page] Course Requested',
+  (courseId: number) => ({ courseId })
+);
 
-export class LessonsPageLoaded implements Action {
+export const courseLoaded = createAction(
+  '[Courses API] Course Loaded',
+  (course: Course) => ({ course })
+);
 
-  readonly type = CourseActionTypes.LessonsPageLoaded;
+export const allCoursesRequested = createAction(
+  '[Courses Home Page] All Courses Requested'
+);
 
-  constructor(public payload:{lessons: Lesson[]}) {}
+export const allCoursesLoaded = createAction(
+  '[Courses API] All Courses Loaded',
+  (courses: Course[]) => ({ courses })
+);
 
-}
-
-export class LessonsPageCancelled implements Action {
-
-  readonly type = CourseActionTypes.LessonsPageCancelled;
-
-}
-
-
-export class CourseRequested implements Action {
-
-  readonly type = CourseActionTypes.CourseRequested;
-
-  constructor(public payload: { courseId: number }) {
-
-  }
-}
-
-
-export class CourseLoaded implements Action {
-
-  readonly type = CourseActionTypes.CourseLoaded;
-
-  constructor(public payload: { course: Course }) {
-  }
-}
-
-
-export class AllCoursesRequested implements Action {
-
-  readonly type = CourseActionTypes.AllCoursesRequested;
-
-}
-
-export class AllCoursesLoaded implements Action {
-
-  readonly type = CourseActionTypes.AllCoursesLoaded;
-
-  constructor(public payload: { courses: Course[] }) {
-
-  }
-
-}
-
-export class CourseSaved implements Action {
-
-  readonly type = CourseActionTypes.CourseSaved;
-
-  constructor(public payload: { course: Update<Course> }) {}
-}
-
-
-
-
-export type CourseActions =
-  CourseRequested
-  | CourseLoaded
-  | AllCoursesRequested
-  | AllCoursesLoaded
-  | CourseSaved
-  | LessonsPageRequested
-  | LessonsPageLoaded
-  | LessonsPageCancelled;
-
-
-
-
+export const courseSaved = createAction(
+  '[Edit Course Dialog] Course Saved',
+  (course: Update<Course>) => ({ course })
+);

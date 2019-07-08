@@ -1,49 +1,42 @@
 import { Injectable } from '@angular/core';
-import {Actions, Effect, ofType} from '@ngrx/effects';
-import {AuthActionTypes, Login, Logout} from './auth.actions';
-import {tap} from 'rxjs/operators';
-import {Router} from '@angular/router';
-import {defer, of} from 'rxjs';
-
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import * as authApiActions from './auth.actions';
+import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { defer, of } from 'rxjs';
 
 @Injectable()
 export class AuthEffects {
 
-  @Effect({dispatch:false})
-  login$ = this.actions$.pipe(
-    ofType<Login>(AuthActionTypes.LoginAction),
-    tap(action => localStorage.setItem("user", JSON.stringify(action.payload.user)))
+  loginSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(authApiActions.login),
+      tap(action => localStorage.setItem('user', JSON.stringify(action.user)))
+    ),
+    { dispatch: false }
   );
 
-  @Effect({dispatch:false})
-  logout$ = this.actions$.pipe(
-    ofType<Logout>(AuthActionTypes.LogoutAction),
-    tap(() => {
-
-      localStorage.removeItem("user");
-      this.router.navigateByUrl('/login');
-
-    })
+  logoutSuccess$ = createEffect(() =>
+      this.actions$.pipe(
+        ofType(authApiActions.logout),
+        tap(() => {
+          localStorage.removeItem('user');
+          this.router.navigateByUrl('./login');
+        })
+      ),
+      { dispatch: false }
   );
 
-  @Effect()
-  init$ = defer(() => {
-
-    const userData = localStorage.getItem("user");
+  init$ = createEffect(() => defer(() => {
+    const userData = localStorage.getItem('user');
 
     if (userData) {
-       return of(new Login({user:JSON.parse(userData)}));
+      return of(authApiActions.login(JSON.parse(userData)));
+    } else {
+      return of(authApiActions.logout());
     }
-    else {
-      return <any> of(new Logout());
-    }
+  }));
 
-  });
-
-  constructor(private actions$: Actions, private router:Router) {
-
-
+  constructor(private actions$: Actions, private router: Router) {
   }
-
-
 }
