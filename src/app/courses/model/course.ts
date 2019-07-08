@@ -1,12 +1,12 @@
 
 
 export interface Course {
-    id:number;
-    description:string;
+    id: number;
+    description: string;
     iconUrl: string;
     courseListIcon: string;
     longDescription: string;
-    category:string;
-    lessonsCount:number;
-    promo:boolean;
+    category: string;
+    lessonsCount: number;
+    promo: boolean;
 }

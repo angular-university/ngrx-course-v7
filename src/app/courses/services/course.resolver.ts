@@ -1,16 +1,16 @@
 
 
 
-import {Injectable} from "@angular/core";
-import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
-import {Course} from "../model/course";
-import {Observable} from "rxjs";
-import {CoursesService} from "./courses.service";
-import {AppState} from "../../reducers";
-import {select, Store} from "@ngrx/store";
-import {filter, first, tap} from "rxjs/operators";
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
+import {Course} from '../model/course';
+import {Observable} from 'rxjs';
+import {CoursesService} from './courses.service';
+import {AppState} from '../../reducers';
+import {select, Store} from '@ngrx/store';
+import {filter, first, tap} from 'rxjs/operators';
 import {selectCourseById} from '../course.selectors';
-import {CourseRequested} from '../course.actions';
+import * as courseActions from '../course.actions';
 
 
 
@@ -18,7 +18,7 @@ import {CourseRequested} from '../course.actions';
 export class CourseResolver implements Resolve<Course> {
 
     constructor(
-        private coursesService:CoursesService,
+        private coursesService: CoursesService,
         private store: Store<AppState>) {
 
     }
@@ -32,13 +32,12 @@ export class CourseResolver implements Resolve<Course> {
             select(selectCourseById(courseId)),
             tap(course => {
               if (!course) {
-                this.store.dispatch(new CourseRequested({courseId}));
+                this.store.dispatch(courseActions.courseRequested(courseId));
               }
             }),
             filter(course => !!course),
             first()
-          )
-
+          );
     }
 
 }

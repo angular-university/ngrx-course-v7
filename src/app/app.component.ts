@@ -1,11 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {select, Store} from "@ngrx/store";
-import {Observable} from "rxjs";
-import {AppState} from './reducers';
-import {Logout} from './auth/auth.actions';
-import {map} from 'rxjs/operators';
-import {isLoggedIn, isLoggedOut} from './auth/auth.selectors';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { AppState } from './reducers';
+import * as authApiActions from './auth/auth.actions';
+import { isLoggedIn, isLoggedOut } from './auth/auth.selectors';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -39,7 +38,7 @@ export class AppComponent implements OnInit {
 
     logout() {
 
-      this.store.dispatch(new Logout());
+      this.store.dispatch(authApiActions.logout());
 
     }
 

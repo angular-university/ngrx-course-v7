@@ -8,12 +8,11 @@ import * as fromLesson from './lessons.reducers';
 import {PageQuery} from './course.actions';
 import {LessonsState} from './lessons.reducers';
 
-export const selectCoursesState = createFeatureSelector<CoursesState>("courses");
+export const selectCoursesState = createFeatureSelector<CoursesState>('courses');
 
-export const selectLessonsState = createFeatureSelector<LessonsState>("lessons");
+export const selectLessonsState = createFeatureSelector<LessonsState>('lessons');
 
-
-export const selectCourseById = (courseId:number) => createSelector(
+export const selectCourseById = (courseId: number) => createSelector(
   selectCoursesState,
   coursesState => coursesState.entities[courseId]
 );
@@ -30,26 +29,20 @@ export const selectBeginnerCourses = createSelector(
   courses => courses.filter(course => course.category === 'BEGINNER')
 );
 
-
 export const selectAdvancedCourses = createSelector(
   selectAllCourses,
   courses => courses.filter(course => course.category === 'ADVANCED')
 );
-
-
 
 export const selectPromoTotal = createSelector(
   selectAllCourses,
   courses => courses.filter(course => course.promo).length
 );
 
-
 export const allCoursesLoaded = createSelector(
   selectCoursesState,
   coursesState => coursesState.allCoursesLoaded
 );
-
-
 
 export const selectAllLessons = createSelector(
     selectLessonsState,
@@ -57,8 +50,7 @@ export const selectAllLessons = createSelector(
 
 );
 
-
-export const selectLessonsPage = (courseId:number, page:PageQuery) => createSelector(
+export const selectLessonsPage = (courseId: number, page: PageQuery) => createSelector(
   selectAllLessons,
   allLessons => {
 
@@ -66,7 +58,7 @@ export const selectLessonsPage = (courseId:number, page:PageQuery) => createSele
           end = start + page.pageSize;
 
     return allLessons
-            .filter(lesson => lesson.courseId == courseId)
+            .filter(lesson => lesson.courseId === courseId)
             .slice(start, end);
 
   }
