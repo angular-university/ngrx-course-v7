@@ -1,4 +1,7 @@
 
+This course is now archived, and has been replaced by [NgRx (with Ngrx Data) - The Complete Guide](https://github.com/angular-university/ngrx-course)
+
+
 ## Angular Ngrx Course
 
 This repository contains the code of the [Angular Ngrx Course](https://angular-university.io/course/angular-ngrx-course).
